@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    html{
+        font-size: 50px;
+        font-family:PingFangSC-Regular;
+    }
+    .container{
+        /* width: 400px; */
+        margin: 0 auto;
+    }
+    .title{
+        text-align: center;
+        font-family: PingFang-SC-Medium;
+        font-size: 0.34rem;
+        margin: 0.18rem 2.1rem;
+    }
+    .infoMain{
+        /* float: left; */
+        position: relative;
+        height: 4.68rem;
+        overflow: hidden;
+
+    }
+    .infoBackground{
+        background:center / contain no-repeat url('./assets/Mask.png') ;
+        background-size:100% 100%;
+        width: 100%;
+        margin: 0;
+        float: left;
+        overflow: hidden;
+        /* z-index: -1; */
+    }
+    .infoMask{
+        background:center / contain no-repeat url('./img/comp_img.jpeg') ;
+        opacity: 0.35; 
+        filter: blur(20px);
+        width: 100%;
+        height: 4.68rem;
+        background-size:100% 100%;
+        margin: 0;
+        /* z-index: -2; */
+        float: left;
+        overflow: hidden;
+    }
+
+    .infoIntro{
+        width: 100%;
+        height: 1.4rem;
+        margin: 0.48rem 4%;
+        position: absolute;
+
+    }
+    /* .introImage{
+        display: inline;
+    } */
+    .introImage{
+        display: flex;
+    }
+    .introImage img{
+        width: 1.4rem;
+        height: 1.4rem;
+        /* display: inline; */
+    }
+    .compIntro{
+        /* display: inline; */
+        width: 2.7rem;
+        margin: auto auto auto 0.2rem;
+    }
+    .compName{
+        color: #fff;
+        font-size: 0.34rem;
+    }
+    .compEn{
+        font-size: 0.26rem;
+        color: #ccc;
+    }
+    .compOther{
+        font-size: 0.28rem;
+        color: #fff;
+    }
+    .subIntro{
+        height: 1rem;
+        width: 92%;
+        background-color: rgba(255, 255, 255, 0.103);
+        border-radius: 5px;
+        margin: 0.3rem 4% 0.3rem 0;
+    }
+    /* 箭头 */
+    i {
+        border: solid rgba(255, 255, 255, 0.5);
+        border-width: 0 3px 3px 0;
+        display: inline-block;
+        padding: 3px;
+    }
+    .rightArrow {
+        transform: rotate(-45deg);
+        /* -webkit-transform: rotate(-45deg); */
+        width: 0.1rem;
+        margin: 0;
+        height: 0.1rem;
+    }
+
+    .introData{
+        display: flex;
+        height: 1rem;
+        overflow:hidden;
+        clear: both;
+        justify-content: center;
+    }
+    .introData div{
+        width: 20%;
+        font-size: 0.22rem;
+        margin: auto auto auto 5.3%;
+        color: white;
+        /* display: flex;
+        flex-direction: column; */
+    }
+    .introData div:first-child{
+        border: solid rgba(255, 255, 255, 0.5);
+        border-width: 0 1px 0 0;
+        /* padding: 1px; */
+    }
+    .introData a{
+        width: 0.5rem;
+        height: 1rem;
+        margin:-0.40rem 5% auto auto;
+    }
+    .introData >div >p:first-child{
+        height: 0.44rem;
+        
+    }
+    .introData div:first-child p:first-child{
+        color: #ff9900
+    }
+    .introData div p:nth-child(2){
+        color: rgba(246, 246, 246, 0.678);
+        height: 0.32rem;
+        white-space:nowrap;
+    }
+    .introData>div>p>span{
+        font-size: 0.32rem;
+        height: 0.44 rem;
+    }
+    .textIntro{
+        margin: 0.31rem 4% 0 4%;
+        /* height: 1.2rem; */
+        font-size: 0.28rem;
+        color: #606266;
+        overflow: hidden;
+        /* white-space:nowrap; */
+        display: -webkit-box;
+        -webkit-line-clamp:3;
+        -webkit-box-orient: vertical;  
+        /* 过渡没有用 */   
+        transition: 1s all linear;
+        /* -webkit-transition: all 0.5s ease-in-out;
+        -moz-transition: all 0.5s ease-in-out;
+        transition: all 0.5s ease-in-out; */
+    }
+    .expandText{
+        height: 0.76rem;
+        /* background: #606266; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .arrow{
+        width: 0.12rem;
+        height: 0.12rem;
+        border: solid #979797;
+        border-width: 2px 2px 0 0;
+        /* margin: auto;
+        line-height: 0.76rem; */
+    }
+    
+    .down{
+        transform: rotate(135deg);
+        transition: all 0.5s;
+    }
+    .up{
+        transform: rotate(-45deg);
+        transition: all 0.5s;
+    }
+    .right{
+        transform: rotate(45deg);
+    }
+    .fakeBackground{
+        height: 0.14rem;
+        background: rgb(245, 245, 245);
+    }
+    .commonTitle{
+        height: 1.12rem;
+        display: flex;
+        align-items: center;
+    }
+    .commonTitle>span:first-child{
+        flex-grow: 1;
+        margin: auto auto auto 4%;
+        font-size: 0.32rem;
+        color: #000;
+    }
+    .commonTitle>a{
+        font-size: 0.24rem;
+        color: #8f9296;
+        margin: auto 4% auto auto;
+        text-decoration: none;
+    }
+    .commonTitle>a>div{
+        display: inline-block;
+    }
+    .commonContent{
+        /* display: flex; */
+        overflow: hidden;
+    }
+    .commonContent>div{
+        margin: auto auto auto 4%;
+        display: flex;
+        flex-wrap: nowrap;
+    }
+    .commonContent>div>img{
+        width: 1.7rem;
+        height: 2.4rem;
+        margin: auto 0.1rem;
+        flex-shrink: 0;
+    }
+    .commonText{
+        display: flex;
+        align-items: center;
+        height: 1rem;
+        overflow: hidden;
+    }
+    .commonText>div{
+        width: 1.7rem;
+        margin: auto 0.1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        /* flex-grow: unset;
+         */
+         /* flex-wrap: nowrap; */
+        flex-shrink: 0;
+    }
+    .commonText>div>div:first-child{
+        font-size: 0.24rem;
+    }
+    .commonText>div>div:nth-child(2){
+        font-size: 0.2rem;
+        color: #8f9296;
+    }
+    .grayBackground>div{
+        background: #FAFAFA;
+        width: 1.6rem;
+        height: 1.2rem;
+        /* padding: 0.1rem; */
+        margin: auto 2% 0.3rem 2%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+        /* flex-shrink: 0; */
+    }
+    .grayBackground>div>div:first-child{
+        font-size: 0.24rem;
+    }
+    .grayBackground>div>div:nth-child(2){
+        font-size: 0.2rem;
+        color: #8f9296;
+    }
+    .moreInfo{
+        margin: auto 4%;
+    }
+    .moreInfo>div{
+        display: flex;
+        height: 1rem;
+        align-items: center;
+    }
+    .moreInfo>div>div:first-child{
+        font-size: 0.26rem;
+        color: #606266;
+        width: 1.5rem;
+        flex-shrink: 0;
+    }
+    .moreInfo>div>div:nth-child(2){
+        font-size: 0.26rem;
+        flex-grow: 1;
+        display: -webkit-box;
+        -webkit-line-clamp:2;
+        -webkit-box-orient: vertical;  
+        overflow: hidden;
+    }
+    .red{
+        color: #ef4238;
+        font-size: 0.3rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 1rem;
+    }
+    .red>div{
+        display: inline-block;
+        border: solid #ef4238;
+        width: 0.12rem;
+        height: 0.12rem;
+        /* border: solid #979797; */
+        border-width: 2px 2px 0 0;
+    }
+    #flagMore{
+        display: none;
+    }
+    .contect{
+        margin: auto 4%;
+        font-size: 0.26rem;
+        color: #606266;
+    }
+    .contect>div{
+        height: 0.4rem;
+    }
+    .contect>div:first-child{
+        height: 0.76rem;
+        display: -webkit-box;
+        -webkit-line-clamp:2;
+        -webkit-box-orient: vertical;  
+        overflow: hidden;
+    }
+    .contect>div:last-child{
+        margin-bottom: 0.3rem;
+    }
+    .mail{
+        background: rgb(245, 245, 245);
+        font-size: 0.24rem;
+        color: #606266;
+        display: flex;
+        justify-content: center;
+        height: 1rem;
+        padding-top: 0.2rem;
+    }
+    .mail a{
+        text-decoration: none;
+    }
+    </style>
+    <div class="container">
+        <div class="title">
+            公司详情页
+        </div>
+        <div class="infoMain">
+            <div class="infoBackground">
+                <div class="infoMask">
+                </div>
+            </div>
+            <div class="infoIntro">
+                <div class="introImage">
+                    <img src="./img/comp_img.jpeg" alt="">
+                    <div class="compIntro">
+                        <div class="compName">派拉蒙影业公司</div>
+                        <div class="compEn">Paramount Picturs.</div>
+                        <div class="compOther">娱乐公司 | 投资公司</div>
+                    </div>
+                </div>
+                <div class="subIntro">
+                    <div class="introData">
+                        <div>
+                            <p>第 <span>11</span> 名</p>
+                            <p>今年主出品</p>
+                        </div>
+                        <div>
+                            <p><span>4</span> 部</p>
+                            <p>作品数量</p>
+                        </div>
+                        <div>
+                            <p><span>4.11</span> 亿</p>
+                            <p>总票房</p>
+                        </div>
+                        <a href="#"><i class="rightArrow"></i></a>
+                    </div>
+                </div>  
+                <div class="subIntro">
+                    <div class="introData">
+                        <div>
+                            <p>第 <span>25</span> 名</p>
+                            <p>今年主发行</p>
+                        </div>
+                        <div>
+                            <p><span>23</span> 部</p>
+                            <p>作品数量</p>
+                        </div>
+                        <div>
+                            <p><span>8.82</span> 亿</p>
+                            <p>总票房</p>
+                        </div>
+                        <a href="#"><i class="rightArrow"></i></a>
+                    </div>
+                </div>  
+
+            </div>
+
+        </div>
+        <div class="textIntro">
+            华谊兄弟时代文化经纪有限公司是一家专业的文化经纪公司，华谊兄弟于2000年起开展艺人经纪事务，依托于华谊兄弟传媒的综合实力，致力于探索出一条规范、专业的文化经纪事业发展道路。
+华谊兄弟时代文化经纪有限公司主要从事艺员演艺经纪、宣传推广等工作。自成立至今，公司已签约过数十位知名艺人，如今旗下囊括了周迅、李冰冰、黄晓明、苏有朋、林心如、范文芳，张涵予、胡可、徐帆、刘孜、任泉、张守兵在内的诸多明星，雄厚的实力在业内首屈一指。
+        </div>
+        <div class="expandText" onclick="expandTextIntro()">
+            <div class="arrow down"></div>
+        </div>
+        <div class="fakeBackground"></div>
+        <div>
+            <div class="commonTitle">
+                <span>代表作品</span><a href="#"><span>全部54部作品</span><div class="arrow right"></div></a>
+            </div>
+            <div class="commonContent">
+                <div>
+                    <img src="./img/filmP.png" alt="电影图片">
+                    <img src="./img/filmP.png" alt="电影图片">
+                    <img src="./img/filmP.png" alt="电影图片">
+                    <img src="./img/filmP.png" alt="电影图片">
+                </div>
+                <div class="commonText">
+                    <div>
+                        <div>火星救援</div>
+                        <div>1.23亿票房</div>
+                    </div>
+                    <div>
+                        <div>火星救援</div>
+                        <div>1.23亿票房</div>
+                    </div>
+                    <div>
+                        <div>火星救援</div>
+                        <div>1.23亿票房</div>
+                    </div>
+                    <div>
+                        <div>火星救援</div>
+                        <div>1.23亿票房</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="fakeBackground"></div>
+        <div>
+            <div class="commonTitle">
+                <span>公司成员</span><a href="#"><span>全部8位成员</span><div class="arrow right"></div></a>
+            </div>
+            <div class="commonContent">
+                <div class="grayBackground">
+                    <div>
+                        <div>王中军</div>
+                        <div>董事长</div>
+                    </div>
+                    <div>
+                        <div>王阳明</div>
+                        <div>诗人</div>
+                    </div>
+                    <div>
+                        <div>周杰伦</div>
+                        <div>路人</div>
+                    </div>
+                    <div>
+                        <div>蔡徐坤</div>
+                        <div>看板娘</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="fakeBackground"></div>
+        <div>
+            <div class="commonTitle">
+                <span>签约艺人</span><a href="#"><span>全部125位艺人</span><div class="arrow right"></div></a>
+            </div>
+            <div class="commonContent">
+                <div>
+                    <img src="./img/actor.png" alt="艺人图片">
+                    <img src="./img/actor.png" alt="艺人图片">
+                    <img src="./img/actor.png" alt="艺人图片">
+                    <img src="./img/actor.png" alt="艺人图片">
+                </div>
+                <div class="commonText">
+                    <div>
+                        <div>周杰伦</div>
+                    </div>
+                    <div>
+                        <div>双节棍</div>
+                    </div>
+                    <div>
+                        <div>双节伦</div>
+                    </div>
+                    <div>
+                        <div>周杰棍</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="fakeBackground"></div>
+        <div>
+            <div class="commonTitle">
+                <span>公司信息</span>
+            </div>
+            <div class="moreInfo">
+                <div>
+                    <div>公司性质</div>
+                    <div>外资独商</div>
+                </div>
+                <div>
+                    <div>公司类型</div>
+                    <div>小阿松不过 i 是大部分 i 表示is 地方 iu阿斯顿个比大俗吧卡苏比代购德国哈不得被阿巴斯领导干部 粉色代表</div>
+                </div>
+                <div>
+                    <div>母公司</div>
+                    <div>北京光线传媒有限公司</div>
+                    <div class="arrow right"></div>
+                </div>
+                <div id="flagMore">
+                    <div>更多的信息</div>
+                </div>
+            </div>
+            <div class="red" onclick="moreCompInfo()">
+                展开&nbsp;<div class="arrow down"> </div>
+            </div>
+        </div>
+        <div class="fakeBackground"></div>
+        <div>
+            <div class="commonTitle">
+                <span>联系方式</span>
+            </div>
+            <div class="contect">
+                <div>北京市西城区难道是以前的地址吗现在看不懂啊这行爱随分公司方式电话返回时都是废话好多个话说更好是德国哈的后果i 啊 u 是挂号事故话说哦啊 u 和歌颂阿甘送货</div>
+                <div>010-62224280</div>
+                <div>www.maoyan.com</div>
+                <div>obistiman@gmail.com</div>
+            </div>
+        </div>
+        <div class="mail">
+            *丰富信息请发送邮件至&nbsp; <a href="#"> v@maoyan.com</a>
+        </div>
+    </div>
+
+    <script>
+
+    function expandTextIntro(){
+        let $textIntro = document.querySelector('.textIntro');
+        let $a = document.querySelector('.expandText > div');
+
+        if(window.getComputedStyle($textIntro,null).webkitLineClamp==3){
+            $textIntro.style.webkitLineClamp=10;
+            $a.classList.replace('down','up')
+        }else{
+            // $textIntro.style.height='1.2rem';
+            $textIntro.style.webkitLineClamp=3;
+            $a.classList.replace('up','down')
+        }
+    }
+    function moreCompInfo(){
+        let $m = document.querySelector('#flagMore');
+        let $arrow = document.querySelector('.red>div');
+        if($m.style.display==''){
+            $m.style.display='flex';
+            $arrow.classList.replace('down','up')
+        }else{
+            $m.style.display='';
+            $arrow.classList.replace('up','down')
+        }
+    }
+    </script>
+</body>
+</html>
